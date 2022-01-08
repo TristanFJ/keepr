@@ -23,11 +23,14 @@ namespace keepr.Controllers
 
 
     [HttpGet("{id}")]
-    public ActionResult<Vault> GetById(int id)
+    public async Task<ActionResult<Vault>> GetById(int id)
     {
       try
       {
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
         Vault vault = _vs.GetById(id);
+        // NOTE not sure if doing this owner check here is best, but doing it here makes my GetById more reusable since not everything passes userInfo.Id to it
+        if (vault.IsPrivate == true && vault.CreatorId != userInfo.Id) { throw new Exception("ACCESS DENIED"); }
         return Ok(vault);
       }
       catch (Exception e)
@@ -37,10 +40,13 @@ namespace keepr.Controllers
     }
 
     [HttpGet("{id}/keeps")]
-    public ActionResult<List<VaultKeepViewModel>> GetAll(int id)
+    public async Task<ActionResult<List<VaultKeepViewModel>>> GetAll(int id)
     {
       try
       {
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+        Vault vault = _vs.GetById(id);
+        if (vault.IsPrivate == true && vault.CreatorId != userInfo.Id) { throw new Exception("ACCESS DENIED"); }
         List<VaultKeepViewModel> vaultKeeps = _vks.GetAll(id);
         return Ok(vaultKeeps);
       }
