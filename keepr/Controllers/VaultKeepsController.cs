@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace keepr.Controllers
 {
   [ApiController]
+  [Authorize]
   [Route("api/[controller]")]
   public class VaultKeepsController : ControllerBase
   {
@@ -20,9 +21,11 @@ namespace keepr.Controllers
     }
 
 
-
+    // BUG my invalid-auth create vaultKeep test fails but I'm not sure why. I'm authorizing the whole controller. Delete vaultkeep throws bad request. 
+    // Request Failed | AssertionError: The request should throw a 403 when not authenticated: expected 200 to be one of [ 400, 403 ]
+    // But the request they're sending is authenticated, because even the creator is being populated, userInfo isn't null. 
+    // Do I have to do a creator check against something? Because it's "INVALID AUTH" and not "NO AUTH", but I'm not sure what to check against on a post besides if you're logged in. 
     [HttpPost]
-    [Authorize]
     public async Task<ActionResult<VaultKeepViewModel>> Create([FromBody] VaultKeepViewModel newVaultKeep)
     {
       try
@@ -32,7 +35,6 @@ namespace keepr.Controllers
         VaultKeepViewModel vaultKeep = _vks.Create(newVaultKeep);
         vaultKeep.Creator = userInfo;
         return Ok(vaultKeep);
-
       }
       catch (Exception e)
       {
@@ -41,7 +43,6 @@ namespace keepr.Controllers
     }
 
     [HttpDelete("{id}")]
-    [Authorize]
     public async Task<ActionResult<VaultKeepViewModel>> Delete(int id)
     {
       try

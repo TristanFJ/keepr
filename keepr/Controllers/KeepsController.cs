@@ -40,7 +40,8 @@ namespace keepr.Controllers
       try
       {
         Keep keep = _ks.GetById(id);
-        return Ok(keep);
+        Keep update = _ks.View(keep);
+        return Ok(update);
       }
       catch (Exception e)
       {

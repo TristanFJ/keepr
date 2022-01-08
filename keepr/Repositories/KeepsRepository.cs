@@ -80,6 +80,17 @@ namespace keepr.Repositories
       _db.Execute(sql, keep);
     }
 
+    internal void View(Keep keep)
+    {
+      string sql = @"
+      UPDATE keeps 
+      SET 
+      views = @Views
+      WHERE id = @Id
+      ";
+      _db.Execute(sql, keep);
+    }
+
     internal void Delete(int id)
     {
       string sql = @"DELETE FROM keeps WHERE id = @id LIMIT 1;";

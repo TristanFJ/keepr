@@ -44,11 +44,16 @@ namespace keepr.Services
       keep.Name = update.Name != null && update.Name.Trim().Length > 0 ? update.Name : keep.Name;
       keep.Description = update.Description != null && update.Description.Trim().Length > 0 ? update.Description : keep.Description;
       keep.Img = update.Img != null && update.Img.Trim().Length > 0 ? update.Img : keep.Img;
-      keep.Views = update.Views != 0 ? update.Views : keep.Views;
       keep.Shares = update.Shares != 0 ? update.Shares : keep.Shares;
-      keep.Keeps = update.Keeps != 0 ? update.Keeps : keep.Keeps;
       _repo.Edit(keep);
       return keep;
+    }
+
+    internal Keep View(Keep update)
+    {
+      update.Views++;
+      _repo.View(update);
+      return update;
     }
 
     internal void Delete(int id, string userId)
