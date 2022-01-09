@@ -1,6 +1,7 @@
 using keepr.Models;
 using keepr.Repositories;
 using System;
+using System.Collections.Generic;
 
 namespace keepr.Services
 {
@@ -23,6 +24,15 @@ namespace keepr.Services
       Vault vault = _repo.GetById(id);
       if (vault == null) { throw new Exception("invalid id"); }
       return vault;
+    }
+
+    internal List<Vault> GetVaultsByProfile(string id)
+    {
+      return _repo.GetVaultsByProfile(id);
+    }
+    internal List<Vault> GetMyVaults(string id)
+    {
+      return _repo.GetMyVaults(id);
     }
 
     internal Vault Edit(Vault update)

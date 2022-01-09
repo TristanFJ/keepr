@@ -30,6 +30,21 @@ namespace keepr.Repositories
       }).ToList();
     }
 
+    internal List<Keep> GetKeepsByProfile(string id)
+    {
+      string sql = @"SELECT
+       k.*,
+       a.* 
+       FROM keeps k
+       JOIN accounts a ON k.creatorId = a.id
+       WHERE k.creatorId = @id";
+      return _db.Query<Keep, Profile, Keep>(sql, (keep, profile) =>
+      {
+        keep.Creator = profile;
+        return keep;
+      }, new { id }).ToList();
+    }
+
     internal Keep GetById(int id)
     {
       string sql = @"
@@ -86,6 +101,17 @@ namespace keepr.Repositories
       UPDATE keeps 
       SET 
       views = @Views
+      WHERE id = @Id
+      ";
+      _db.Execute(sql, keep);
+    }
+
+    internal void Keep(Keep keep)
+    {
+      string sql = @"
+      UPDATE keeps 
+      SET 
+      keeps = @Keeps
       WHERE id = @Id
       ";
       _db.Execute(sql, keep);

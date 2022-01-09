@@ -9,15 +9,16 @@ using Microsoft.AspNetCore.Mvc;
 namespace keepr.Controllers
 {
   [ApiController]
-  [Authorize]
   [Route("api/[controller]")]
   public class VaultKeepsController : ControllerBase
   {
 
     private readonly VaultKeepsService _vks;
-    public VaultKeepsController(VaultKeepsService vks)
+    private readonly KeepsService _ks;
+    public VaultKeepsController(VaultKeepsService vks, KeepsService ks)
     {
       _vks = vks;
+      _ks = ks;
     }
 
 
@@ -26,6 +27,7 @@ namespace keepr.Controllers
     // But the request they're sending is authenticated, because even the creator is being populated, userInfo isn't null. 
     // Do I have to do a creator check against something? Because it's "INVALID AUTH" and not "NO AUTH", but I'm not sure what to check against on a post besides if you're logged in. 
     [HttpPost]
+    [Authorize]
     public async Task<ActionResult<VaultKeepViewModel>> Create([FromBody] VaultKeepViewModel newVaultKeep)
     {
       try
@@ -34,6 +36,8 @@ namespace keepr.Controllers
         newVaultKeep.CreatorId = userInfo.Id;
         VaultKeepViewModel vaultKeep = _vks.Create(newVaultKeep);
         vaultKeep.Creator = userInfo;
+        Keep keep = _ks.GetById(vaultKeep.KeepId);
+        _ks.Keep(keep);
         return Ok(vaultKeep);
       }
       catch (Exception e)
@@ -43,6 +47,7 @@ namespace keepr.Controllers
     }
 
     [HttpDelete("{id}")]
+    [Authorize]
     public async Task<ActionResult<VaultKeepViewModel>> Delete(int id)
     {
       try

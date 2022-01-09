@@ -9,10 +9,12 @@ namespace keepr.Services
   {
 
     private readonly VaultKeepsRepository _repo;
+    private readonly KeepsService _ks;
 
-    public VaultKeepsService(VaultKeepsRepository repo)
+    public VaultKeepsService(VaultKeepsRepository repo, KeepsService ks)
     {
       _repo = repo;
+      _ks = ks;
     }
 
     internal VaultKeepViewModel GetById(int id)
@@ -20,7 +22,7 @@ namespace keepr.Services
       VaultKeepViewModel vaultKeep = _repo.GetById(id);
       if (vaultKeep == null)
       {
-        throw new Exception("Invalid id");
+        throw new Exception("Invalid id (vks)");
       }
       return vaultKeep;
     }
@@ -39,6 +41,8 @@ namespace keepr.Services
     {
       VaultKeepViewModel vaultKeep = GetById(id);
       if (vaultKeep.CreatorId != userId) { throw new Exception("ACCESS DENIED"); }
+      Keep keep = _ks.GetById(vaultKeep.KeepId);
+      _ks.Unkeep(keep);
       _repo.Delete(id);
     }
 

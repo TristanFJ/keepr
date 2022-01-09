@@ -10,6 +10,6 @@ namespace keepr.Models
 
   public class Account : Profile
   {
-    // Do I need to have anything extra here since both profile and account have id name email picture?
+    // REVIEW Do I need to have anything extra here since both profile and account have id name email picture?
   }
 }

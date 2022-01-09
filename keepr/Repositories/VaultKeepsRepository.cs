@@ -20,6 +20,7 @@ namespace keepr.Repositories
       string sql = @"
         SELECT
           k.*,
+          k.id AS KeepId,
           vk.id AS VaultKeepId,
           a.*
         FROM vaultkeeps vk
@@ -51,6 +52,7 @@ namespace keepr.Repositories
 
     internal List<VaultKeepViewModel> GetAll(int id)
     {
+      // REVIEW Do I want the vault joined on the vault keep? Or is this good? I pass the tests, but isPrivate comes back null.
       string sql = @"
   SELECT
     k.*,

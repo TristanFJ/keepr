@@ -24,9 +24,14 @@ namespace keepr.Services
       Keep keep = _repo.GetById(id);
       if (keep == null)
       {
-        throw new Exception("Invalid id");
+        throw new Exception("Invalid id (ks)");
       }
       return keep;
+    }
+
+    internal List<Keep> GetKeepsByProfile(string id)
+    {
+      return _repo.GetKeepsByProfile(id);
     }
 
     internal Keep Create(Keep newKeep)
@@ -54,6 +59,18 @@ namespace keepr.Services
       update.Views++;
       _repo.View(update);
       return update;
+    }
+
+    internal void Keep(Keep update)
+    {
+      update.Keeps++;
+      _repo.Keep(update);
+    }
+
+    internal void Unkeep(Keep update)
+    {
+      update.Keeps--;
+      _repo.Keep(update);
     }
 
     internal void Delete(int id, string userId)
