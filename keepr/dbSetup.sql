@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS vaults(
   name TEXT NOT NULL,
   description TEXT NOT NULL,
   isPrivate BOOLEAN NOT NULL,
+  img TEXT NOT NULL,
   
   FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
 )default charset utf8 COMMENT '';

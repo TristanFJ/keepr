@@ -42,6 +42,7 @@ namespace keepr.Services
       vault.Name = update.Name != null && update.Name.Trim().Length > 0 ? update.Name : vault.Name;
       vault.Description = update.Description != null && update.Description.Trim().Length > 0 ? update.Description : vault.Description;
       vault.IsPrivate = update.IsPrivate != null ? update.IsPrivate : vault.IsPrivate;
+      vault.Img = update.Img != null ? update.Img : vault.Img;
       _repo.Edit(vault);
       return vault;
     }
