@@ -57,6 +57,8 @@ namespace keepr.Repositories
   SELECT
     k.*,
     vk.id AS VaultKeepId,
+    vk.keepId,
+    vk.vaultId,
     a.*
   FROM vaultkeeps vk
   JOIN keeps k on k.id = vk.keepId
