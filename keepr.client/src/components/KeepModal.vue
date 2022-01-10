@@ -28,9 +28,9 @@
                 <h1 class="p-0 m-0 my-5 text-center">{{ keep.name }}</h1>
                 <h5>{{ keep.description }}</h5>
               </div>
-              <div class="row mt-4">
+              <div class="row mt-4 justify-content-around">
                 <div
-                  class="col-4 d-flex align-items-center justify-content-center"
+                  class="col-2 d-flex align-items-center justify-content-center"
                 >
                   <button class="btn btn-dark btn-sm">Add To Vault</button>
                 </div>

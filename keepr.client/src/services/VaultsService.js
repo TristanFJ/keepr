@@ -1,6 +1,7 @@
 import { AppState } from "../AppState"
 import { logger } from "../utils/Logger"
 import { api } from "./AxiosService"
+import { vaultKeepsService } from "./VaultKeepsService"
 
 class VaultsService {
   async getMyVaults() {
@@ -16,6 +17,7 @@ class VaultsService {
       return false
     } else {
       AppState.activeVault = res.data
+      vaultKeepsService.getVaultKeeps(id)
       return true
     }
   }
