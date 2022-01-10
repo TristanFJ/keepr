@@ -10,6 +10,12 @@ class KeepsService {
     // logger.log(AppState.keeps)
   }
 
+  async getByProfile(id) {
+    const res = await api.get('api/profiles/' + id + '/keeps')
+    // logger.log(res.data)
+    AppState.keeps = res.data
+  }
+
   async getById(id) {
     const res = await api.get('api/keeps/' + id)
     // logger.log(res.data)

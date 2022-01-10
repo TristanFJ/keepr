@@ -28,7 +28,7 @@
                 <h1 class="p-0 m-0 my-5 text-center">{{ keep.name }}</h1>
                 <h5>{{ keep.description }}</h5>
               </div>
-              <div class="row mt-4 justify-content-around">
+              <div class="row mt-4">
                 <div
                   class="col-4 d-flex align-items-center justify-content-center"
                 >
@@ -41,7 +41,7 @@
                     <i class="mdi mdi-delete-outline text-white"></i>
                   </button>
                 </div>
-                <div class="col-md-6 d-flex">
+                <div class="col-md-6 d-flex text-end">
                   <img
                     class="object-fit-cover rounded-pill me-3 elevation-3"
                     height="50"
