@@ -47,7 +47,7 @@
               :src="user.picture"
               alt="user photo"
               height="40"
-              class="rounded"
+              class="rounded-pill"
             />
             <span class="mx-3 text-success lighten-30">{{ user.name }}</span>
           </div>
@@ -126,9 +126,8 @@ a:hover {
   background: hsl(198, 78%, 14%);
   background: linear-gradient(
     25deg,
-    hsl(243, 100%, 7%) 0%,
-    hsl(240, 86%, 25%) 35%,
-    hsl(198, 78%, 64%) 250%
+    hsl(120, 1%, 17%) 0%,
+    hsl(44, 7%, 41%) 100%
   );
 }
 

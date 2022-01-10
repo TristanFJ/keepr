@@ -36,3 +36,20 @@ form:invalid button[type="submit"] {
   filter: grayscale(1);
   pointer-events: none;
 }
+
+.object-fit-cover {
+  object-fit: cover;
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 5px $dark;
+}
+
+.card {
+  transition: all 0.25s;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  transition: all 0.1s;
+}
