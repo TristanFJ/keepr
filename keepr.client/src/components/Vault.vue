@@ -20,6 +20,7 @@
 
 
 <script>
+import { useRouter } from "vue-router"
 import { vaultsService } from "../services/VaultsService"
 import { logger } from "../utils/Logger"
 import Pop from "../utils/Pop"
@@ -27,11 +28,18 @@ export default {
   props: { vault: { type: Object, required: true } },
 
   setup() {
+    const router = useRouter()
     return {
 
       async setActive(id) {
         try {
-          await vaultsService.getById(id)
+          if (await vaultsService.getById(id)) {
+            router.push({ name: "Vault", params: { id: id } })
+          } else {
+            router.push({ name: "Home" })
+          }
+
+
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')
