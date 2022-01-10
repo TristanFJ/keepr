@@ -1,7 +1,9 @@
 <template>
-  <div class="keep">
+  <div class="keep" @click="setActive(keep.id)">
     <div
       class="card text-white bg-primary m-3 my-4 rounded elevation-5 selectable"
+      data-bs-toggle="modal"
+      data-bs-target="#keep-modal"
     >
       <img
         class="card-img-top w-100 object-fit-cover rounded-top"
@@ -24,10 +26,26 @@
 
 
 <script>
+import { AppState } from "../AppState"
+import { keepsService } from "../services/KeepsService"
+import { logger } from "../utils/Logger"
+import Pop from "../utils/Pop"
 export default {
   props: { keep: { type: Object, required: true } },
   setup() {
-    return {}
+    return {
+
+      async setActive(id) {
+        try {
+          await keepsService.getById(id)
+          logger.log(AppState.activeKeep)
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message)
+        }
+      }
+
+    }
   }
 }
 </script>

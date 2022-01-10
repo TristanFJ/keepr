@@ -13,6 +13,7 @@
 
 main {
   flex-grow: 1;
+  color: hsl(198, 78%, 14%);
 }
 
 a {
@@ -52,4 +53,8 @@ form:invalid button[type="submit"] {
 .card:hover {
   transform: scale(1.02);
   transition: all 0.1s;
+}
+
+.opacity {
+  backdrop-filter: blur(33px);
 }
