@@ -41,7 +41,10 @@
                     <i class="mdi mdi-delete-outline text-white"></i>
                   </button>
                 </div>
-                <div class="col-md-6 d-flex text-end">
+                <div
+                  class="col-md-6 d-flex text-end selectable rounded"
+                  @click="setProfile(keep.creatorId)"
+                >
                   <img
                     class="object-fit-cover rounded-pill me-3 elevation-3"
                     height="50"
@@ -62,10 +65,27 @@
 <script>
 import { computed } from "@vue/reactivity"
 import { AppState } from "../AppState"
+import { logger } from "../utils/Logger"
+import Pop from "../utils/Pop"
+import { useRouter } from "vue-router"
+import { Modal } from "bootstrap"
+import { profilesService } from "../services/ProfilesService"
 export default {
   setup() {
+    const router = useRouter()
     return {
-      keep: computed(() => AppState.activeKeep)
+      keep: computed(() => AppState.activeKeep),
+
+      async setProfile(id) {
+        try {
+          await profilesService.getProfile(id)
+          router.push({ name: "Profile", params: { id: id } })
+          Modal.getOrCreateInstance(document.getElementById('keep-modal')).hide()
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
+      }
     }
   }
 }
