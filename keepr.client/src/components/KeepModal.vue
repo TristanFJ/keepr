@@ -28,7 +28,7 @@
                 <h1 class="p-0 m-0 my-5 text-center">{{ keep.name }}</h1>
                 <h5>{{ keep.description }}</h5>
               </div>
-              <div class="row mt-5 justify-content-around">
+              <div class="row mt-4 justify-content-around">
                 <div
                   class="col-4 d-flex align-items-center justify-content-center"
                 >
@@ -45,9 +45,9 @@
                   <img
                     class="object-fit-cover rounded-pill me-3 elevation-3"
                     height="50"
-                    :src="keep.creator.picture"
+                    :src="keep.creator?.picture"
                   />
-                  <p class="text-end p-2 m-1">{{ keep.creator.name }}</p>
+                  <p class="text-end p-2 m-1">{{ keep.creator?.name }}</p>
                 </div>
               </div>
             </div>
