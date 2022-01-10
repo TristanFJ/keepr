@@ -1,17 +1,22 @@
-$body-bg: #e5e5e5;
-$primary: #3ba5dc;
-$secondary: #8392ab;
-$success: #00f867;
-$info: #5d0149;
-$warning: #fbcf33;
-$danger: #ea0606;
-$light: #e9ecef;
-$dark: #111927;
-$grey: #cbcbcb;
+$body-bg: hsl(0, 0%, 70%);
+$primary: hsl(198, 78%, 64%);
+$secondary: hsl(53, 98%, 65%);
+$success: hsl(79, 54%, 51%);
+$info: hsl(13, 77%, 55%);
+$warning: hsl(24, 96%, 55%);
+$danger: hsl(0, 100%, 50%);
+$light: hsl(210, 16%,80%);
+$dark: hsl(198, 78%, 14%);
+$grey: hsl(0, 0%, 50%);
 
 $font-sans-serif: Open Sans;
-$font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-$gradient: linear-gradient(180deg, hsla(0, 0%, 100%, 0.15), hsla(0, 0%, 100%, 0));
+$font-monospace: 'Josefin Sans', sans-serif, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace, ;
+$gradient: linear-gradient(
+  25deg,
+  hsl(243, 100%, 7%) 0%,
+  hsl(240, 86%, 25%) 35%,
+  hsl(198, 78%, 64%) 250%
+);
 
 $colors: (
   "primary": $primary,
