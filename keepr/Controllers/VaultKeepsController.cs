@@ -15,10 +15,12 @@ namespace keepr.Controllers
 
     private readonly VaultKeepsService _vks;
     private readonly KeepsService _ks;
-    public VaultKeepsController(VaultKeepsService vks, KeepsService ks)
+    private readonly VaultsService _vs;
+    public VaultKeepsController(VaultKeepsService vks, KeepsService ks, VaultsService vs)
     {
       _vks = vks;
       _ks = ks;
+      _vs = vs;
     }
 
 
@@ -34,6 +36,8 @@ namespace keepr.Controllers
       {
         Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
         newVaultKeep.CreatorId = userInfo.Id;
+        Vault vault = _vs.GetById(newVaultKeep.VaultId);
+        if (vault.CreatorId != userInfo.Id) { throw new Exception("ACCESS DENIED"); }
         VaultKeepViewModel vaultKeep = _vks.Create(newVaultKeep);
         vaultKeep.Creator = userInfo;
         Keep keep = _ks.GetById(vaultKeep.KeepId);
