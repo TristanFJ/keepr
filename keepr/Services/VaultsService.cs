@@ -22,7 +22,7 @@ namespace keepr.Services
     internal Vault GetById(int id)
     {
       Vault vault = _repo.GetById(id);
-      if (vault == null) { throw new Exception("invalid id"); }
+      if (vault == null) { throw new Exception("invalid id (vs)"); }
       return vault;
     }
 

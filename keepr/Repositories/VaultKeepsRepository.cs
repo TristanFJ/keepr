@@ -22,11 +22,13 @@ namespace keepr.Repositories
           k.*,
           k.id AS KeepId,
           vk.id AS VaultKeepId,
+          v.id AS VaultId,
           a.*
         FROM vaultkeeps vk
         JOIN keeps k on k.id = vk.keepId
+        JOIN vaults v on v.id = vk.vaultId
         JOIN accounts a ON k.creatorId = a.id
-        WHERE vk.Id = @id;
+        WHERE vk.id = @id;
       ";
       return _db.Query<VaultKeepViewModel, Profile, VaultKeepViewModel>(sql, (vk, profile) =>
       {
@@ -54,16 +56,17 @@ namespace keepr.Repositories
     {
       // REVIEW Do I want the vault joined on the vault keep? Or is this good? I pass the tests, but isPrivate comes back null.
       string sql = @"
-  SELECT
-    k.*,
-    vk.id AS VaultKeepId,
-    vk.keepId,
-    vk.vaultId,
-    a.*
-  FROM vaultkeeps vk
-  JOIN keeps k on k.id = vk.keepId
-  JOIN accounts a ON k.creatorId = a.id
-  WHERE vk.vaultId = @id;
+        SELECT
+          k.*,
+          k.id AS KeepId,
+          vk.id AS VaultKeepId,
+          v.id AS VaultId,
+          a.*
+        FROM vaultkeeps vk
+        JOIN keeps k on k.id = vk.keepId
+        JOIN vaults v on v.id = vk.vaultId
+        JOIN accounts a ON k.creatorId = a.id
+        WHERE v.id = @id;
   ";
       return _db.Query<VaultKeepViewModel, Profile, VaultKeepViewModel>(sql, (vk, profile) =>
       {
