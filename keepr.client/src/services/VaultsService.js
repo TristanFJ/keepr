@@ -7,7 +7,7 @@ class VaultsService {
   async getMyVaults() {
     const res = await api.get('account/vaults')
     AppState.myVaults = res.data
-    logger.log(AppState.myVaults)
+    // logger.log(AppState.myVaults)
   }
 
   async getById(id) {
@@ -31,7 +31,13 @@ class VaultsService {
     let data = { vaultId: vaultId, keepId: keepId }
     const res = await api.post('api/vaultkeeps', data)
     // TODO push to vault? Or put it into appstate to make it reactive
-    logger.log(res.data)
+    // logger.log(res.data)
+  }
+
+  async createVault(data) {
+    const res = await api.post('api/vaults', data)
+    // logger.log(res.data)
+    AppState.myVaults.push(res.data)
   }
 
 }

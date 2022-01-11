@@ -11,6 +11,7 @@
               @click="deleteVault(vault.id)"
             ></i>
           </h1>
+          <h4>{{ vault.description }}</h4>
           <h4>Keeps: {{ keeps.length }}</h4>
         </div>
         <div class="col-lg-4" v-for="keep in keeps" :key="keep.id">
@@ -30,11 +31,21 @@ import { vaultKeepsService } from "../services/VaultKeepsService"
 import { onMounted } from "@vue/runtime-core"
 import { logger } from "../utils/Logger"
 import Pop from "../utils/Pop"
-import { useRouter } from "vue-router"
+import { useRoute, useRouter } from "vue-router"
 import { vaultsService } from "../services/VaultsService"
+import { keepsService } from "../services/KeepsService"
 export default {
   setup() {
     const router = useRouter()
+    const route = useRoute()
+    // onMounted(async () => {
+    //   try {
+    //     await vaultsService.getById(route.params.id)
+    //   } catch (error) {
+    //     logger.error(error)
+    //     Pop.toast(error.message, 'error')
+    //   }
+    // })
     return {
       vault: computed(() => AppState.activeVault),
       keeps: computed(() => AppState.keeps),

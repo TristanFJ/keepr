@@ -30,7 +30,7 @@
               </div>
               <div class="row mt-4 justify-content-around">
                 <div
-                  class="col-2 d-flex align-items-center justify-content-center"
+                  class="col-4 d-flex align-items-center justify-content-center"
                 >
                   <!-- <button class="btn btn-dark btn-sm">Add To Vault</button> -->
                   <div class="dropdown open" v-if="route.name !== 'Vault'">
@@ -55,7 +55,7 @@
                       </button>
                     </div>
                   </div>
-                  <div v-else>
+                  <div v-else-if="vault.creatorId === account.id">
                     <button
                       class="btn btn-sm btn-danger text-white"
                       @click="deleteVaultKeep(keep.id)"
@@ -65,12 +65,11 @@
                   </div>
                 </div>
                 <div
-                  class="col-2 d-flex align-items-center justify-content-center"
+                  class="col-1 d-flex align-items-center justify-content-center"
+                  v-if="account.id === keep.creatorId"
+                  @click="deleteKeep(keep.id)"
                 >
-                  <button
-                    class="btn btn-danger"
-                    v-if="account.id === keep.creatorId"
-                  >
+                  <button class="btn btn-danger" title="delete keep">
                     <i class="mdi mdi-delete-outline text-white"></i>
                   </button>
                 </div>
@@ -113,6 +112,7 @@ import { profilesService } from "../services/ProfilesService"
 import { vaultsService } from "../services/VaultsService"
 import { onMounted } from "@vue/runtime-core"
 import { vaultKeepsService } from "../services/VaultKeepsService"
+import { keepsService } from "../services/KeepsService"
 export default {
   setup() {
     const router = useRouter()
@@ -122,6 +122,7 @@ export default {
       keep: computed(() => AppState.activeKeep),
       account: computed(() => AppState.account),
       vaults: computed(() => AppState.myVaults),
+      vault: computed(() => AppState.activeVault),
       route,
       async setProfile(id) {
         try {
@@ -150,11 +151,25 @@ export default {
 
       async deleteVaultKeep(keepId) {
         try {
-          if (await Pop.confirm('Do you want to delete your vault?')) {
+          if (await Pop.confirm('Do you want to delete your keep?')) {
             await vaultKeepsService.deleteVaultKeep(keepId)
             Modal.getOrCreateInstance(document.getElementById('keep-modal')).hide()
           }
           else { return }
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
+      },
+
+
+      async deleteKeep(id) {
+        try {
+          if (await Pop.confirm('Do you want to delete your keep?')) {
+            await keepsService.deleteKeep(id)
+            Modal.getOrCreateInstance(document.getElementById('keep-modal')).hide()
+          }
+
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')

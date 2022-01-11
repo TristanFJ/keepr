@@ -1,13 +1,29 @@
 <template>
-  <div class="about p-5 container-fluid">
-    <div class="row">
+  <div class="about container-fluid">
+    <div class="row m-3">
       <div class="col d-flex">
         <img class="rounded" :src="account.picture" alt="" />
         <h3 class="m-1">{{ account.name }}</h3>
       </div>
-      <div class="col-12">
+      <!-- <div class="col-12">
         <h5 class="m-1">Vaults: {{ vaults.length }}</h5>
         <h5 class="m-1">Keeps: {{ keeps.length }}</h5>
+      </div> -->
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <h1 class="m-0 my-4 py-4 bg-primary">
+        Vaults: {{ vaults.length }}
+        <i
+          class="mdi mdi-plus text-info selectable rounded"
+          data-bs-toggle="modal"
+          data-bs-target="#create-vault-modal"
+        ></i>
+      </h1>
+      <div class="masonry-with-columns">
+        <Vault :vault="vault" v-for="vault in vaults" :key="vault.id" />
       </div>
     </div>
   </div>
@@ -15,27 +31,21 @@
   <div class="container-fluid">
     <div class="row">
       <h1 class="m-0 my-4 py-4 bg-primary">
-        Vaults
-        <i class="mdi mdi-plus text-success selectable rounded"></i>
+        Keeps: {{ keeps.length }}
+        <i
+          class="mdi mdi-plus text-info selectable rounded"
+          data-bs-toggle="modal"
+          data-bs-target="#create-keep-modal"
+        ></i>
       </h1>
-      <div class="col-md-4" v-for="vault in vaults" :key="vault.id">
-        <Vault :vault="vault" />
-      </div>
-    </div>
-  </div>
-
-  <div class="container-fluid">
-    <div class="row">
-      <h1 class="m-0 my-4 py-4 bg-primary">
-        Keeps
-        <i class="mdi mdi-plus text-success selectable rounded"></i>
-      </h1>
-      <div class="col-md-4" v-for="keep in keeps" :key="keep.id">
-        <Keep :keep="keep" />
+      <div class="masonry-with-columns">
+        <Keep :keep="keep" v-for="keep in keeps" :key="keep.id" />
       </div>
     </div>
   </div>
   <KeepModal />
+  <CreateVaultModal />
+  <CreateKeepModal />
 </template>
 
 <script>
