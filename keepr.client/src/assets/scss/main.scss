@@ -58,3 +58,21 @@ form:invalid button[type="submit"] {
 .opacity {
   backdrop-filter: blur(33px);
 }
+
+// body {
+//   margin: 0;
+//   padding: 1rem;
+// }
+
+// .masonry-with-columns {
+//   columns: 6 200px;
+//   column-gap: 1rem;
+
+//   @for $i from 1 through 36 { 
+//     div:nth-child(#{$i}) {
+//       $h: (random(400) + 100) + px;
+//       height: $h;
+//       line-height: $h;
+//     }
+//   }
+// }
