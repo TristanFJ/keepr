@@ -57,6 +57,9 @@ namespace keepr.Controllers
       try
       {
         Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+        VaultKeepViewModel vaultKeep = _vks.GetById(id);
+        Vault vault = _vs.GetById(vaultKeep.VaultId);
+        if (vault.CreatorId != userInfo.Id) { throw new Exception("ACCESS DENIED"); }
         _vks.Delete(id, userInfo.Id);
         return Ok("DELETED");
       }

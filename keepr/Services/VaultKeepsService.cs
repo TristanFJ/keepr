@@ -40,8 +40,8 @@ namespace keepr.Services
 
     internal void Delete(int id, string userId)
     {
+
       VaultKeepViewModel vaultKeep = GetById(id);
-      if (vaultKeep.CreatorId != userId) { throw new Exception("ACCESS DENIED"); }
       Keep keep = _ks.GetById(vaultKeep.KeepId);
       _ks.Unkeep(keep);
       _repo.Delete(id);
