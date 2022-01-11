@@ -7,6 +7,7 @@
             {{ vault.name }}
             <i
               class="mdi mdi-delete-outline selectable rounded text-danger"
+              v-if="vault.creatorId === account.id"
               @click="deleteVault(vault.id)"
             ></i>
           </h1>
@@ -37,6 +38,7 @@ export default {
     return {
       vault: computed(() => AppState.activeVault),
       keeps: computed(() => AppState.keeps),
+      account: computed(() => AppState.account),
 
       async deleteVault(id) {
         try {

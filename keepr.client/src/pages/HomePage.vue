@@ -1,9 +1,11 @@
 <template>
   <div class="container-fluid">
     <div class="row">
+      <!-- <div class="masonry-with-columns"> -->
       <div class="col-lg-4" v-for="keep in keeps" :key="keep.id">
         <Keep :keep="keep" />
       </div>
+      <!-- </div> -->
     </div>
   </div>
   <KeepModal />
@@ -15,6 +17,7 @@ import { logger } from "../utils/Logger"
 import { keepsService } from "../services/KeepsService"
 import Pop from "../utils/Pop"
 import { AppState } from "../AppState"
+import { vaultsService } from "../services/VaultsService"
 export default {
   name: 'Home',
   setup() {

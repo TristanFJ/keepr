@@ -32,12 +32,37 @@
                 <div
                   class="col-2 d-flex align-items-center justify-content-center"
                 >
-                  <button class="btn btn-dark btn-sm">Add To Vault</button>
+                  <!-- <button class="btn btn-dark btn-sm">Add To Vault</button> -->
+                  <div class="dropdown open">
+                    <button
+                      class="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      id="triggerId"
+                      data-bs-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      Add To Vault
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="triggerId">
+                      <button
+                        class="btn btn-primary m-1"
+                        @click="addToVault(vault.id)"
+                        v-for="vault in vaults"
+                        :key="vault.id"
+                      >
+                        {{ vault.name }}
+                      </button>
+                    </div>
+                  </div>
                 </div>
                 <div
                   class="col-2 d-flex align-items-center justify-content-center"
                 >
-                  <button class="btn btn-danger">
+                  <button
+                    class="btn btn-danger"
+                    v-if="account.id === keep.creatorId"
+                  >
                     <i class="mdi mdi-delete-outline text-white"></i>
                   </button>
                 </div>
@@ -70,11 +95,14 @@ import Pop from "../utils/Pop"
 import { useRouter } from "vue-router"
 import { Modal } from "bootstrap"
 import { profilesService } from "../services/ProfilesService"
+import { vaultsService } from "../services/VaultsService"
 export default {
   setup() {
     const router = useRouter()
     return {
       keep: computed(() => AppState.activeKeep),
+      account: computed(() => AppState.account),
+      vaults: computed(() => AppState.myVaults),
 
       async setProfile(id) {
         try {
@@ -84,6 +112,17 @@ export default {
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')
+        }
+      },
+
+      async addToVault(vaultId) {
+        try {
+          const keepId = AppState.activeKeep.id
+          await vaultsService.addToVault(vaultId, keepId)
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+
         }
       }
     }
