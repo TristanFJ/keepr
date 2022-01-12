@@ -12,14 +12,9 @@ class VaultsService {
 
   async getById(id) {
     const res = await api.get('api/vaults/' + id)
-    // logger.log('get vaults by id', res.data)
-    if (res.data.isPrivate && res.data.creatorId !== AppState.account.id) {
-      return false
-    } else {
-      AppState.activeVault = res.data
-      vaultKeepsService.getVaultKeeps(id)
-      return true
-    }
+    logger.log('get vaults by id', res.data)
+    AppState.activeVault = res.data
+    await vaultKeepsService.getVaultKeeps(id)
   }
 
   async deleteVault(id) {

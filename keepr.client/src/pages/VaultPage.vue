@@ -14,8 +14,8 @@
           <h4>{{ vault.description }}</h4>
           <h4>Keeps: {{ keeps.length }}</h4>
         </div>
-        <div class="col-lg-4" v-for="keep in keeps" :key="keep.id">
-          <Keep :keep="keep" />
+        <div class="masonry-with-columns">
+          <Keep :keep="keep" v-for="keep in keeps" :key="keep.id" />
         </div>
       </div>
     </div>
@@ -38,14 +38,16 @@ export default {
   setup() {
     const router = useRouter()
     const route = useRoute()
-    // onMounted(async () => {
-    //   try {
-    //     await vaultsService.getById(route.params.id)
-    //   } catch (error) {
-    //     logger.error(error)
-    //     Pop.toast(error.message, 'error')
-    //   }
-    // })
+    onMounted(async () => {
+      try {
+        await vaultsService.getById(route.params.id)
+        logger.log("push vault")
+      } catch (error) {
+        router.push({ name: "Home" })
+        logger.error(error)
+        Pop.toast(error.message, 'error')
+      }
+    })
     return {
       vault: computed(() => AppState.activeVault),
       keeps: computed(() => AppState.keeps),

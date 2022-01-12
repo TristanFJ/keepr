@@ -33,14 +33,10 @@ export default {
 
       async setActive(id) {
         try {
-          if (await vaultsService.getById(id)) {
-            router.push({ name: "Vault", params: { id: id } })
-          } else {
-            router.push({ name: "Home" })
-          }
-
-
+          await vaultsService.getById(id)
+          router.push({ name: "Vault", params: { id: id } })
         } catch (error) {
+          router.push({ name: "Home" })
           logger.error(error)
           Pop.toast(error.message, 'error')
         }

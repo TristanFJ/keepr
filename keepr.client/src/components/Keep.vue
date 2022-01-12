@@ -1,7 +1,7 @@
 <template>
   <div class="keep" @click="setActive(keep.id)">
     <div
-      class="card text-white bg-primary m-3 my-4 rounded elevation-5 selectable"
+      class="card text-white bg-primary m-2 rounded elevation-5 selectable"
       data-bs-toggle="modal"
       data-bs-target="#keep-modal"
     >
