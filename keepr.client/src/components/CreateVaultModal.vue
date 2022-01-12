@@ -80,6 +80,10 @@ export default {
       state,
       async createVault() {
         try {
+          if (!state.isPrivate) {
+            state.isPrivate = false
+          }
+          // logger.log(state)
           await vaultsService.createVault(state)
         } catch (error) {
           logger.error(error)
