@@ -6,18 +6,18 @@
       data-bs-target="#keep-modal"
     >
       <img
-        class="card-img-top w-100 object-fit-cover rounded-top"
+        class="card-img-top w-100 object-fit-cover rounded-top img"
         :src="keep.img"
         alt=""
       />
-      <div class="card-body">
-        <h4 class="card-title text-shadow">
+      <div class="bottom-left">
+        <h3 class="card-title m-2 p-3 rounded-pill text-shadow gray">
           <img
             class="object-fit-cover rounded-pill me-3 elevation-3"
             height="50"
             :src="keep.creator.picture"
           />{{ keep.name }}
-        </h4>
+        </h3>
       </div>
     </div>
   </div>
@@ -51,4 +51,13 @@ export default {
 
 
 <style lang="scss" scoped>
+.card {
+  position: relative;
+}
+
+.bottom-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
 </style>
