@@ -4,7 +4,7 @@
       <template #modal-body>
         <div class="container">
           <div class="row">
-            <div class="col-lg-5">
+            <div class="col-lg-5 d-flex align-items-center">
               <img
                 :src="keep.img"
                 class="object-fit-cover w-100 rounded elevation-1"
@@ -24,9 +24,15 @@
                   <i class="mdi mdi-share"></i>{{ keep.shares }}
                 </div>
               </div>
-              <div class="row">
-                <h1 class="p-0 m-0 my-5 text-center">{{ keep.name }}</h1>
-                <h5>{{ keep.description }}</h5>
+              <div class="row justify-content-center">
+                <div class="col-12">
+                  <h1 class="p-0 m-0 my-3 text-center">{{ keep.name }}</h1>
+                </div>
+                <div class="col-11">
+                  <h5 class="p-3 m-1 bg-success border border-primary rounded">
+                    {{ keep.description }}
+                  </h5>
+                </div>
               </div>
               <div class="row mt-4 justify-content-around">
                 <div
@@ -80,7 +86,8 @@
                     text-end
                     selectable
                     rounded
-                    align-items-center
+                    ms-auto
+                    p-1
                   "
                   @click="setProfile(keep.creatorId)"
                 >

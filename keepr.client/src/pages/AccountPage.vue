@@ -1,9 +1,9 @@
 <template>
-  <div class="about container-fluid">
+  <div class="about p-0 container-fluid">
     <div class="row m-3">
       <div class="col d-flex">
-        <img class="rounded" :src="account.picture" alt="" />
-        <h3 class="m-1">{{ account.name }}</h3>
+        <img class="rounded-pill" :src="account.picture" alt="" />
+        <h3 class="m-3">{{ account.name }}</h3>
       </div>
       <!-- <div class="col-12">
         <h5 class="m-1">Vaults: {{ vaults.length }}</h5>
@@ -79,7 +79,4 @@ export default {
 </script>
 
 <style scoped>
-img {
-  max-width: 100px;
-}
 </style>

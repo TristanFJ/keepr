@@ -8,6 +8,7 @@
             class="mdi mdi-delete-outline selectable rounded text-danger"
             v-if="vault.creatorId === account.id"
             @click="deleteVault(vault.id)"
+            title="delete vault"
           ></i>
         </h1>
         <h4>{{ vault.description }}</h4>
@@ -55,7 +56,7 @@ export default {
         try {
           if (await Pop.confirm('Do you want to delete your vault?')) {
             await vaultsService.deleteVault(id)
-            router.push({ name: "Home" })
+            router.push({ name: "Account" })
           } else { return }
         } catch (error) {
           logger.error(error)

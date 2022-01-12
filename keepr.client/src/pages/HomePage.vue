@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid py-3">
     <div class="masonry-with-columns">
       <Keep :keep="keep" v-for="keep in keeps" :key="keep.id" />
     </div>

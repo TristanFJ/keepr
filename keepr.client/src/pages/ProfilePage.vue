@@ -2,8 +2,8 @@
   <div class="profile-page p-0 container-fluid">
     <div class="row m-3">
       <div class="col d-flex">
-        <img class="rounded" :src="profile.picture" alt="" />
-        <h3 class="m-1">{{ profile.name }}</h3>
+        <img class="rounded-pill" :src="profile.picture" alt="" />
+        <h3 class="m-3">{{ profile.name }}</h3>
       </div>
       <!-- <div class="col-12">
         <h5 class="m-1">Vaults: {{ vaults.length }}</h5>
