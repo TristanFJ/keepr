@@ -1,22 +1,20 @@
 <template>
   <div class="vault-page">
     <div class="container">
-      <div class="row">
-        <div class="col-12 m-3">
-          <h1>
-            {{ vault.name }}
-            <i
-              class="mdi mdi-delete-outline selectable rounded text-danger"
-              v-if="vault.creatorId === account.id"
-              @click="deleteVault(vault.id)"
-            ></i>
-          </h1>
-          <h4>{{ vault.description }}</h4>
-          <h4>Keeps: {{ keeps.length }}</h4>
-        </div>
-        <div class="masonry-with-columns">
-          <Keep :keep="keep" v-for="keep in keeps" :key="keep.id" />
-        </div>
+      <div class="col-12 m-3">
+        <h1>
+          {{ vault.name }}
+          <i
+            class="mdi mdi-delete-outline selectable rounded text-danger"
+            v-if="vault.creatorId === account.id"
+            @click="deleteVault(vault.id)"
+          ></i>
+        </h1>
+        <h4>{{ vault.description }}</h4>
+        <h4>Keeps: {{ keeps.length }}</h4>
+      </div>
+      <div class="masonry-with-columns">
+        <Keep :keep="keep" v-for="keep in keeps" :key="keep.id" />
       </div>
     </div>
   </div>
