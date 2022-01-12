@@ -5,7 +5,6 @@
     >
       <img
         class="card-img-top w-100 object-fit-cover rounded-top"
-        height="250"
         :src="vault.img"
         alt=""
       />
