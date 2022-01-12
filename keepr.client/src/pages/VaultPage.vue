@@ -10,6 +10,7 @@
             @click="deleteVault(vault.id)"
             title="delete vault"
           ></i>
+          <!-- TODO SWEET ALERTS -->
         </h1>
         <h4>{{ vault.description }}</h4>
         <h4>Keeps: {{ keeps.length }}</h4>

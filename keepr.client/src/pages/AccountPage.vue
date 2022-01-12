@@ -20,6 +20,7 @@
           class="mdi mdi-plus text-info selectable rounded"
           data-bs-toggle="modal"
           data-bs-target="#create-vault-modal"
+          title="create vault"
         ></i>
       </h1>
       <div class="masonry-with-columns">
@@ -36,6 +37,7 @@
           class="mdi mdi-plus text-info selectable rounded"
           data-bs-toggle="modal"
           data-bs-target="#create-keep-modal"
+          title="create keep"
         ></i>
       </h1>
       <div class="masonry-with-columns">
