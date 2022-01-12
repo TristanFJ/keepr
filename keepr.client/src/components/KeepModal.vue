@@ -157,6 +157,7 @@ export default {
           const keepId = AppState.activeKeep.id
           await vaultsService.addToVault(vaultId, keepId)
           await vaultsService.getById(vaultId)
+          Pop.toast('Added to vault', 'success')
           router.push({ name: "Vault", params: { id: vaultId } })
           Modal.getOrCreateInstance(document.getElementById('keep-modal')).hide()
         } catch (error) {
@@ -171,6 +172,7 @@ export default {
           if (await Pop.confirm('Do you want to delete your keep?')) {
             await vaultKeepsService.deleteVaultKeep(keepId)
             Modal.getOrCreateInstance(document.getElementById('keep-modal')).hide()
+            Pop.toast("Deleted", 'success')
           }
           else { return }
         } catch (error) {
@@ -185,6 +187,7 @@ export default {
           if (await Pop.confirm('Do you want to delete your keep?')) {
             await keepsService.deleteKeep(id)
             Modal.getOrCreateInstance(document.getElementById('keep-modal')).hide()
+            Pop.toast("Deleted", 'success')
           }
 
         } catch (error) {

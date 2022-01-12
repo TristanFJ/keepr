@@ -71,6 +71,7 @@ export default {
       async createKeep() {
         try {
           await keepsService.createKeep(state)
+          Pop.toast("Keep created", 'success')
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message)

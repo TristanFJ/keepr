@@ -85,6 +85,7 @@ export default {
           }
           // logger.log(state)
           await vaultsService.createVault(state)
+          Pop.toast("Vault created", 'success')
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')

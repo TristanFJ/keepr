@@ -25,8 +25,7 @@ class VaultsService {
   async addToVault(vaultId, keepId) {
     let data = { vaultId: vaultId, keepId: keepId }
     const res = await api.post('api/vaultkeeps', data)
-    // TODO push to vault? Or put it into appstate to make it reactive
-    // logger.log(res.data)
+
   }
 
   async createVault(data) {

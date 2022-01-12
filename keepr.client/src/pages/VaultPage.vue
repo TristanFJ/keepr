@@ -58,6 +58,7 @@ export default {
           if (await Pop.confirm('Do you want to delete your vault?')) {
             await vaultsService.deleteVault(id)
             router.push({ name: "Account" })
+            Pop.toast("Deleted vault", 'success')
           } else { return }
         } catch (error) {
           logger.error(error)
