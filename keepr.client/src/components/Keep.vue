@@ -1,10 +1,6 @@
 <template>
   <div class="keep" @click="setActive(keep.id)">
-    <div
-      class="card keep text-white bg-primary m-2 elevation-5 selectable"
-      data-bs-toggle="modal"
-      data-bs-target="#keep-modal"
-    >
+    <div class="card keep text-white bg-primary m-2 elevation-5 selectable">
       <img
         class="w-100 keep object-fit-cover rounded-top img"
         :src="keep.img"
@@ -25,6 +21,7 @@
 
 
 <script>
+import { Modal } from "bootstrap"
 import { AppState } from "../AppState"
 import { keepsService } from "../services/KeepsService"
 import { logger } from "../utils/Logger"
@@ -37,7 +34,8 @@ export default {
       async setActive(id) {
         try {
           await keepsService.getById(id)
-          logger.log(AppState.activeKeep)
+          Modal.getOrCreateInstance(document.getElementById('keep-modal')).toggle()
+          // logger.log(AppState.activeKeep)
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')
