@@ -17,6 +17,7 @@ import { vaultsService } from "../services/VaultsService"
 export default {
   name: 'Home',
   setup() {
+    document.title = "Keepr | Home"
     watchEffect(async () => {
       try {
         await keepsService.getAll()

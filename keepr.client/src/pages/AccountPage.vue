@@ -64,6 +64,7 @@ export default {
       try {
         await vaultsService.getMyVaults()
         await keepsService.getByProfile(AppState.account.id)
+        document.title = "Keepr | Account"
       } catch (error) {
         logger.error(error)
         Pop.toast(error.message, 'error')

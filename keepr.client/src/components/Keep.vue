@@ -54,7 +54,7 @@ export default {
 }
 
 .keep {
-  border-radius: 66px !important;
+  border-radius: 65px !important;
 }
 
 .top-left {

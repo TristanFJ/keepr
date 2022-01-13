@@ -38,6 +38,7 @@ export default {
   setup() {
     const router = useRouter()
     const route = useRoute()
+    document.title = "Keepr | Vault"
     onMounted(async () => {
       try {
         await vaultsService.getById(route.params.id)

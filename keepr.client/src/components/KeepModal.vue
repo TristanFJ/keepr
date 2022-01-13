@@ -131,32 +131,25 @@ import { vaultsService } from "../services/VaultsService"
 import { onMounted } from "@vue/runtime-core"
 import { vaultKeepsService } from "../services/VaultKeepsService"
 import { keepsService } from "../services/KeepsService"
+import { applyStyles } from "@popperjs/core"
 export default {
   setup() {
     const router = useRouter()
     const route = useRoute()
+
 
     return {
       keep: computed(() => AppState.activeKeep),
       account: computed(() => AppState.account),
       vaults: computed(() => AppState.myVaults),
       vault: computed(() => AppState.activeVault),
-      inVault: computed(async () => {
-        let vaultId = AppState.activeVault.Id
-        logger.log('invault', vaultId)
-      }),
-      route,
-      // inVault(vaultId) {
-      //   try {
-      //     const keepId = AppState.activeKeep.id
-      //     let keeps = await vaultKeepsService.getVaultKeeps(vaultId)
-      //     find
-      //   } catch (error) {
-      //     logger.error(error)
-      //     Pop.toast(error.message, 'error')
+      // inVault: computed(async () => {
 
-      //   }
-      // },
+      //   let keepId = AppState.activeKeep.id
+      //   // I have an activeKeepId, I have my vaults. I want to take that Id, find if it's contained in any of the vaults in the list, and if it is then return true. 
+      // }),
+      route,
+
       async setProfile(id) {
         try {
           await profilesService.getProfile(id)
