@@ -60,6 +60,7 @@
                       Add To Vault
                     </button>
                     <div class="dropdown-menu" aria-labelledby="triggerId">
+                      <!-- TODO stretch goal: disable vaults that contain THIS keep -->
                       <button
                         class="btn btn-primary m-1"
                         @click="addToVault(vault.id)"
@@ -140,7 +141,22 @@ export default {
       account: computed(() => AppState.account),
       vaults: computed(() => AppState.myVaults),
       vault: computed(() => AppState.activeVault),
+      inVault: computed(async () => {
+        let vaultId = AppState.activeVault.Id
+        logger.log('invault', vaultId)
+      }),
       route,
+      // inVault(vaultId) {
+      //   try {
+      //     const keepId = AppState.activeKeep.id
+      //     let keeps = await vaultKeepsService.getVaultKeeps(vaultId)
+      //     find
+      //   } catch (error) {
+      //     logger.error(error)
+      //     Pop.toast(error.message, 'error')
+
+      //   }
+      // },
       async setProfile(id) {
         try {
           await profilesService.getProfile(id)
@@ -166,6 +182,7 @@ export default {
 
         }
       },
+
 
       async deleteVaultKeep(keepId) {
         try {

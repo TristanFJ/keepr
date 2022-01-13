@@ -1,17 +1,17 @@
 <template>
   <div class="keep" @click="setActive(keep.id)">
     <div
-      class="card text-white bg-primary m-2 rounded elevation-5 selectable"
+      class="card keep text-white bg-primary m-2 elevation-5 selectable"
       data-bs-toggle="modal"
       data-bs-target="#keep-modal"
     >
       <img
-        class="card-img-top w-100 object-fit-cover rounded-top img"
+        class="w-100 keep object-fit-cover rounded-top img"
         :src="keep.img"
         alt=""
       />
-      <div class="bottom-left">
-        <h3 class="card-title m-2 p-3 rounded-pill text-shadow gray">
+      <div class="top-left">
+        <h3 class="card-title m-3 p-3 rounded-pill text-shadow gray">
           <img
             class="object-fit-cover rounded-pill me-3 elevation-3"
             height="50"
@@ -55,7 +55,11 @@ export default {
   position: relative;
 }
 
-.bottom-left {
+.keep {
+  border-radius: 66px !important;
+}
+
+.top-left {
   position: absolute;
   left: 0;
   top: 0;
