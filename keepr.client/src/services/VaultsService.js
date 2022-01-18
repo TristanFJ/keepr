@@ -12,7 +12,7 @@ class VaultsService {
 
   async getById(id) {
     const res = await api.get('api/vaults/' + id)
-    logger.log('get vaults by id', res.data)
+    // logger.log('get vaults by id', res.data)
     AppState.activeVault = res.data
     await vaultKeepsService.getVaultKeeps(id)
   }

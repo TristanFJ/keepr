@@ -18,7 +18,7 @@
     </div>
   </div>
 </template>
-
+// NOTE CARD COLUMNS bootstrap 
 
 <script>
 import { Modal } from "bootstrap"
