@@ -15,19 +15,19 @@
             <div class="col-lg-7 p-0 d-flex flex-column align-items-apart">
               <div class="row mb-1 justify-content-around">
                 <div
-                  class="col-md-2 text-center bg-dark rounded-pill p-1 m-1"
+                  class="col-2 text-center bg-dark rounded-pill p-1 m-1"
                   title="views"
                 >
                   <i class="mdi mdi-eye"></i> {{ keep.views }}
                 </div>
                 <div
-                  class="col-md-2 text-center bg-dark rounded-pill p-1 m-1"
+                  class="col-2 text-center bg-dark rounded-pill p-1 m-1"
                   title="keeps"
                 >
                   <i class="mdi mdi-bookmark"></i>{{ keep.keeps }}
                 </div>
                 <div
-                  class="col-md-2 text-center bg-dark rounded-pill p-1 m-1"
+                  class="col-2 text-center bg-dark rounded-pill p-1 m-1"
                   title="shares"
                 >
                   <i class="mdi mdi-share"></i>{{ keep.shares }}
