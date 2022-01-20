@@ -48,7 +48,10 @@
                   class="col-4 d-flex align-items-center justify-content-center"
                 >
                   <!-- <button class="btn btn-dark btn-sm">Add To Vault</button> -->
-                  <div class="dropdown open" v-if="route.name !== 'Vault'">
+                  <div
+                    class="dropdown open"
+                    v-if="route.name !== 'Vault' && user.isAuthenticated"
+                  >
                     <button
                       class="btn btn-secondary dropdown-toggle"
                       type="button"
@@ -71,7 +74,11 @@
                       </button>
                     </div>
                   </div>
-                  <div v-else-if="vault.creatorId === account.id">
+                  <div
+                    v-else-if="
+                      vault.creatorId === account.id && user.isAuthenticated
+                    "
+                  >
                     <button
                       class="btn btn-sm btn-danger text-white"
                       @click="deleteVaultKeep(keep.id)"
@@ -143,6 +150,8 @@ export default {
       account: computed(() => AppState.account),
       vaults: computed(() => AppState.myVaults),
       vault: computed(() => AppState.activeVault),
+      user: computed(() => AppState.user),
+
       // inVault: computed(async () => {
 
       //   let keepId = AppState.activeKeep.id

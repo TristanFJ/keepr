@@ -3,6 +3,13 @@
     <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content">
         <div class="modal-body">
+          <button
+            type="button"
+            class="btn-close m-2"
+            aria-label="Close"
+            data-bs-target="modal"
+            data-bs-dismiss="modal"
+          ></button>
           <slot name="modal-body"></slot>
         </div>
       </div>
