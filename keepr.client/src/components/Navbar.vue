@@ -20,6 +20,7 @@
       <ul class="navbar-nav me-auto">
         <li></li>
       </ul>
+      <!-- BUG button works on desktop and responsive mode but doesn't work on mobile browser?  -->
       <span class="navbar-text">
         <button
           class="

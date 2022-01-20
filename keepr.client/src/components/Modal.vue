@@ -3,13 +3,18 @@
     <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content">
         <div class="modal-body">
-          <button
-            type="button"
-            class="btn-close m-2"
-            aria-label="Close"
-            data-bs-target="modal"
-            data-bs-dismiss="modal"
-          ></button>
+          <div class="container">
+            <div class="row">
+              <button
+                type="button"
+                class="btn-close m-2 ms-auto"
+                aria-label="Close"
+                data-bs-target="modal"
+                data-bs-dismiss="modal"
+                title="close modal"
+              ></button>
+            </div>
+          </div>
           <slot name="modal-body"></slot>
         </div>
       </div>
@@ -21,9 +26,9 @@
 <script>
 export default {
   setup() {
-    return {}
-  }
-}
+    return {};
+  },
+};
 </script>
 
 
